@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALA at BEA 2025 Shared Task</title>
+    <link href="https://fonts.googleapis.com/css2?family=Latin+Modern+Roman:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Computer+Modern+Serif:ital,wght@0,400;0,700;1,400&family=Latin+Modern+Math&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,171 +13,486 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #000000;
-            color: #ffffff;
+            font-family: 'Latin Modern Roman', 'Computer Modern Serif', 'Times New Roman', serif;
+            background: #000000;
+            line-height: 1.65;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Latin Modern Roman', 'Computer Modern Serif', 'Times New Roman', 'Times', serif;
+            background: #000000;
             line-height: 1.6;
+            font-size: 17px;
+            font-weight: 400;
+            overflow-x: hidden;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Solid white text for all elements to ensure visibility */
+        .title, .section-title, .subtitle, .authors, .author-highlight, .affiliations, 
+        .abstract-text, .leaderboard-title, .leaderboard-team, .leaderboard-score, 
+        .leaderboard-rank, .result-card h3, .metric-name, .metric-value, 
+        .method-item h4, .finding-item h4, .method-item p, .finding-item p, 
+        .footer-content, .presented-label, .conference-tag, .citation, .math {
+            color: #ffffff; /* Solid white text for maximum visibility */
+        }
+
+        /* Specific styling adjustments to maintain readability and hierarchy */
+        .title, .section-title {
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .authors {
+            font-weight: 500;
+        }
+
+        .author-highlight {
+            font-weight: 600;
+        }
+
+        .affiliations {
+            font-style: italic;
+        }
+
+        .abstract-text {
+            font-size: 18px;
+            line-height: 1.7;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .leaderboard-title {
+            font-weight: 600;
+        }
+
+        .leaderboard-team {
+            font-weight: 400;
+        }
+
+        .leaderboard-score {
+            font-weight: 600;
+        }
+
+        .leaderboard-rank {
+            font-weight: 700;
+        }
+
+        .result-card h3 {
+            font-weight: 600;
+        }
+
+        .metric-name {
+            font-weight: 400;
+        }
+
+        .metric-value {
+            font-weight: 600;
+        }
+
+        .method-item h4, .finding-item h4 {
+            font-weight: 600;
+        }
+
+        .method-item p, .finding-item p {
+            line-height: 1.6;
+        }
+
+        .footer-content {
+            font-weight: 400;
+        }
+
+        .presented-label {
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .conference-tag {
+            font-weight: 500;
+        }
+
+        .citation {
+            font-style: italic;
+        }
+
+        .math {
+            font-family: 'Latin Modern Math', 'Latin Modern Roman', 'Computer Modern Serif', 'Times New Roman', serif;
+            font-style: italic;
+        }
+
+        /* Animated background particles */
+        .background-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(74, 158, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
 
-        /* Header */
+        /* Enhanced Header */
         header {
-            padding: 60px 0;
+            padding: 4rem 0;
             text-align: center;
-            border-bottom: 1px solid #333;
+            position: relative;
+            background: #000000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(74, 158, 255, 0.2);
         }
 
         .title {
-            font-size: 3rem;
-            font-weight: 300;
-            margin-bottom: 30px;
-            line-height: 1.2;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            text-shadow: 0 0 30px rgba(74, 158, 255, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(74, 158, 255, 0.6)); }
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            color: #4A9EFF;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
         }
 
         .authors {
             font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #cccccc;
+            margin-bottom: 2rem;
         }
 
         .author-highlight {
-            color: #4A9EFF;
+            font-weight: 600;
         }
 
         .affiliations {
             font-size: 0.95rem;
-            color: #999999;
-            margin-bottom: 40px;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
         }
 
-        /* Action Buttons */
+        /* Enhanced Action Buttons */
         .action-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 1rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background-color: #4A9EFF;
+            background: linear-gradient(135deg, #4A9EFF 0%, #2196F3 100%);
             color: white;
-        }
-
-        .btn-secondary {
-            background-color: #333333;
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(74, 158, 255, 0.3);
         }
 
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e3f2fd;
+            border: 2px solid rgba(74, 158, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(74, 158, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(74, 158, 255, 0.2);
+            border-color: #4A9EFF;
+        }
+
+        /* Conference presentation styling */
         .presented-at {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 2rem;
         }
 
         .presented-label {
-            color: #999999;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .conference-tags {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .conference-tag {
-            background-color: #333333;
-            padding: 8px 16px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2) 0%, rgba(33, 150, 243, 0.2) 100%);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
             font-size: 0.9rem;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         /* Main Content */
         main {
-            padding: 60px 0;
+            padding: 4rem 0;
         }
 
         .section {
-            margin-bottom: 60px;
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 1; /* Ensure sections are always visible */
+            transform: translateY(0);
+            transition: transform 0.6s ease;
+        }
+
+        .section:not(.visible) {
+            transform: translateY(20px);
+        }
+
+        .section.visible {
+            transform: translateY(0);
         }
 
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #4A9EFF;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
             text-align: center;
+            position: relative;
         }
 
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(135deg, #a8c8ec, #7bb3f0);
+            border-radius: 1px;
+        }
+
+        /* Abstract styling */
         .abstract-text {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #e0e0e0;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: justify;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced Leaderboard */
+        .leaderboard {
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 700px;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leaderboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4A9EFF, #64B5F6, #42A5F5);
+        }
+
+        .leaderboard-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .leaderboard-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .leaderboard-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .leaderboard-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .leaderboard-container::-webkit-scrollbar-thumb {
+            background: #4A9EFF;
+            border-radius: 3px;
+        }
+
+        .leaderboard-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(74, 158, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard-entry:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard-entry:hover {
+            background: rgba(74, 158, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .leaderboard-entry.our-team {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2), rgba(33, 150, 243, 0.2));
+            border: 1px solid rgba(74, 158, 255, 0.4);
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            padding: 1rem;
+        }
+
+        .leaderboard-rank {
+            font-size: 1.1rem;
+            min-width: 40px;
+        }
+
+        .leaderboard-team {
+            flex-grow: 1;
+            margin-left: 1rem;
+        }
+
+        .leaderboard-score {
+            font-size: 1.1rem;
         }
 
         /* Results Grid */
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .result-card {
-            background-color: #111111;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            transition: transform 0.3s ease;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4A9EFF, #64B5F6);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .result-card:hover::before {
+            transform: scaleX(1);
         }
 
         .result-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
             border-color: #4A9EFF;
+            box-shadow: 0 20px 60px rgba(74, 158, 255, 0.2);
         }
 
         .result-card h3 {
-            color: #4A9EFF;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .metric {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
-            padding: 10px 0;
-            border-bottom: 1px solid #333;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(74, 158, 255, 0.2);
         }
 
         .metric:last-child {
@@ -184,106 +500,75 @@
         }
 
         .metric-name {
-            color: #cccccc;
+            font-weight: 500;
         }
 
         .metric-value {
-            color: #4A9EFF;
-            font-weight: 600;
-        }
-
-        /* Leaderboard */
-        .leaderboard {
-            background-color: #111111;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px auto;
-            max-width: 600px;
-            border: 1px solid #333;
-        }
-
-        .leaderboard-title {
-            text-align: center;
-            color: #4A9EFF;
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-        }
-
-        .ranking {
-            text-align: center;
-            font-size: 3rem;
-            color: #FFD700;
-            margin-bottom: 15px;
-            font-weight: 300;
-        }
-
-        .ranking-text {
-            text-align: center;
-            color: #cccccc;
             font-size: 1.1rem;
         }
 
-        /* Method Overview */
-        .method-grid {
+        /* Method and Findings */
+        .method-grid, .findings-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 1.5rem;
         }
 
-        .method-item {
-            background-color: #111111;
-            padding: 25px;
-            border-radius: 10px;
+        .method-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .method-item, .finding-item {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem;
+            border-radius: 15px;
             border-left: 4px solid #4A9EFF;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        .method-item h4 {
-            color: #4A9EFF;
-            margin-bottom: 15px;
+        .method-item:hover, .finding-item:hover {
+            transform: translateX(5px);
+            background: rgba(0, 0, 0, 0.9);
         }
 
-        .method-item p {
-            color: #e0e0e0;
-            line-height: 1.6;
+        .method-item h4, .finding-item h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
 
-        /* Key Findings */
+        .method-item p, .finding-item p {
+            line-height: 1.7;
+        }
+
         .findings-list {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-        }
-
-        .finding-item {
-            background-color: #111111;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #4A9EFF;
-        }
-
-        .finding-item h4 {
-            color: #4A9EFF;
-            margin-bottom: 10px;
-        }
-
-        .finding-item p {
-            color: #e0e0e0;
         }
 
         /* Footer */
         footer {
-            background-color: #111111;
-            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 3rem 0;
             text-align: center;
-            border-top: 1px solid #333;
+            border-top: 1px solid rgba(74, 158, 255, 0.3);
+            backdrop-filter: blur(15px);
         }
 
         .footer-content {
-            color: #999999;
+            line-height: 1.6;
+        }
+
+        .footer-content p:first-child {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
             .title {
                 font-size: 2rem;
             }
@@ -300,10 +585,52 @@
             .results-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .leaderboard {
+                max-width: 100%;
+                margin: 1rem auto;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation for section containers, not text */
+        .section {
+            opacity: 1; /* Ensure sections start visible */
+            transform: translateY(0);
+            transition: transform 0.6s ease;
+        }
+
+        .section:not(.visible) {
+            transform: translateY(20px);
+        }
+
+        .section.visible {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+    <!-- Animated background -->
+    <div class="background-particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 8s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 10s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 12s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 14s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 16s;"></div>
+    </div>
+
     <header>
         <div class="container">
             <h1 class="title">ALA at BEA 2025 Shared Task: Analyzing Pedagogical Feedback with a BERT-Based Classifier</h1>
@@ -319,16 +646,18 @@
             </div>
             
             <div class="action-buttons">
-                <a href="#" class="btn btn-primary">📄 Paper</a>
-                <a href="#" class="btn btn-secondary">💻 Code</a>
-                <a href="#" class="btn btn-secondary">📊 Data</a>
+                <a href="#" class="btn btn-primary">📄 Read Paper</a>
+                <a href="#" class="btn btn-secondary">💻 View Code</a>
+                <a href="#" class="btn btn-secondary">📊 Download Data</a>
+                <a href="#" class="btn btn-secondary">🎯 BibTeX</a>
             </div>
             
             <div class="presented-at">
-                <div class="presented-label">Presented At:</div>
+                <div class="presented-label">Presented At</div>
                 <div class="conference-tags">
                     <span class="conference-tag">BEA 2025</span>
                     <span class="conference-tag">ACL Workshop</span>
+                    <span class="conference-tag">Educational NLP</span>
                 </div>
             </div>
         </div>
@@ -340,25 +669,16 @@
             <section class="section">
                 <h2 class="section-title">Abstract</h2>
                 <div class="abstract-text">
-                    We present our submission to Track 1 (Mistake Identification) of the BEA 2025 Shared Task on Pedagogical Ability Assessment of AI Tutors. Our system uses a fine-tuned bert-base-uncased model to classify tutor responses into three pedagogical categories: "Yes", "To some extent", and "No". Inputs are constructed by concatenating the dialogue history with the current tutor response, allowing the model to assess whether the tutor accurately identifies student mistakes. Trained on the 2,476-response development set, our final submission achieved a strict macro-F1 score of 0.6361 and a lenient macro-F1 score of 0.8493 on the official test set.
-                </div>
-            </section>
-
-            <!-- Leaderboard Position -->
-            <section class="section">
-                <div class="leaderboard">
-                    <h3 class="leaderboard-title">Official Leaderboard Position</h3>
-                    <div class="ranking">28th</div>
-                    <div class="ranking-text">out of participating teams in Track 1</div>
+                    We present our submission to Track 1 (Mistake Identification) of the BEA 2025 Shared Task on Pedagogical Ability Assessment of AI Tutors. Our system uses a fine-tuned <span class="citation">bert-base-uncased</span> model to classify tutor responses into three pedagogical categories: "Yes", "To some extent", and "No". Inputs are constructed by concatenating the dialogue history with the current tutor response, allowing the model to assess whether the tutor accurately identifies student mistakes. Trained on the 2,476-response development set, our final submission achieved a strict macro-F1 score of <strong>0.6361</strong> and a lenient macro-F1 score of <strong>0.8493</strong> on the official test set, placing our team at <strong>28th position</strong> in the shared task leaderboard.
                 </div>
             </section>
 
             <!-- Results Section -->
             <section class="section">
-                <h2 class="section-title">Results</h2>
+                <h2 class="section-title">Experimental Results</h2>
                 <div class="results-grid">
                     <div class="result-card">
-                        <h3>Validation Set Performance</h3>
+                        <h3>Development Set Performance</h3>
                         <div class="metric">
                             <span class="metric-name">Strict Accuracy</span>
                             <span class="metric-value">86.29%</span>
@@ -378,7 +698,7 @@
                     </div>
                     
                     <div class="result-card">
-                        <h3>Test Set Performance</h3>
+                        <h3>Official Test Set Performance</h3>
                         <div class="metric">
                             <span class="metric-name">Strict Accuracy</span>
                             <span class="metric-value">84.23%</span>
@@ -399,44 +719,180 @@
                 </div>
             </section>
 
+            <!-- Official Leaderboard Section -->
+            <section class="section">
+                <div class="leaderboard">
+                    <h3 class="leaderboard-title">BEA 2025 Track 1: Mistake Identification - Official Leaderboard</h3>
+                    <div class="leaderboard-container">
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">🥇 1</span>
+                            <span class="leaderboard-team">BJTU</span>
+                            <span class="leaderboard-score">0.7181</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">🥈 2</span>
+                            <span class="leaderboard-team">TutorMind</span>
+                            <span class="leaderboard-score">0.7163</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">🥉 3</span>
+                            <span class="leaderboard-team">Averroes</span>
+                            <span class="leaderboard-score">0.7155</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">4</span>
+                            <span class="leaderboard-team">MSA</span>
+                            <span class="leaderboard-score">0.7154</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">5</span>
+                            <span class="leaderboard-team">BD</span>
+                            <span class="leaderboard-score">0.7110</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">6</span>
+                            <span class="leaderboard-team">Gooby-Snoob Guysz</span>
+                            <span class="leaderboard-score">0.7105</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">7</span>
+                            <span class="leaderboard-team">Wonderland_EDU@HKU</span>
+                            <span class="leaderboard-score">0.6983</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">8</span>
+                            <span class="leaderboard-team">Archaeology</span>
+                            <span class="leaderboard-score">0.6976</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">9</span>
+                            <span class="leaderboard-team">test</span>
+                            <span class="leaderboard-score">0.6948</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">10</span>
+                            <span class="leaderboard-team">Someone</span>
+                            <span class="leaderboard-score">0.6926</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">11</span>
+                            <span class="leaderboard-team">TBA</span>
+                            <span class="leaderboard-score">0.6858</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">12</span>
+                            <span class="leaderboard-team">BLCU-ICALL</span>
+                            <span class="leaderboard-score">0.6822</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">13</span>
+                            <span class="leaderboard-team">bea-jh</span>
+                            <span class="leaderboard-score">0.6802</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">14</span>
+                            <span class="leaderboard-team">JiNan_Smart Education</span>
+                            <span class="leaderboard-score">0.6790</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">15</span>
+                            <span class="leaderboard-team">jeez</span>
+                            <span class="leaderboard-score">0.6735</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">⋮</span>
+                            <span class="leaderboard-team">...</span>
+                            <span class="leaderboard-score">...</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">25</span>
+                            <span class="leaderboard-team">CU</span>
+                            <span class="leaderboard-score">0.6514</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">26</span>
+                            <span class="leaderboard-team">NLP Group 7</span>
+                            <span class="leaderboard-score">0.6499</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">27</span>
+                            <span class="leaderboard-team">NLIP</span>
+                            <span class="leaderboard-score">0.6438</span>
+                        </div>
+                        <div class="leaderboard-entry our-team">
+                            <span class="leaderboard-rank">📍 28</span>
+                            <span class="leaderboard-team"><strong>ALA Team (Our Submission)</strong></span>
+                            <span class="leaderboard-score"><strong>0.6361</strong></span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">29</span>
+                            <span class="leaderboard-team">mucai</span>
+                            <span class="leaderboard-score">0.6285</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">30</span>
+                            <span class="leaderboard-team">AGS</span>
+                            <span class="leaderboard-score">0.6251</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">⋮</span>
+                            <span class="leaderboard-team">...</span>
+                            <span class="leaderboard-score">...</span>
+                        </div>
+                        <div class="leaderboard-entry">
+                            <span class="leaderboard-rank">44</span>
+                            <span class="leaderboard-team">RAGthoven</span>
+                            <span class="leaderboard-score">0.2949</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #ffffff;">
+                        <em>Rankings based on exact macro-F1 score. 44 teams participated in Track 1.</em>
+                    </div>
+                </div>
+            </section>
+
             <!-- Method Section -->
             <section class="section">
-                <h2 class="section-title">Method Overview</h2>
+                <h2 class="section-title">Methodology</h2>
                 <div class="method-grid">
                     <div class="method-item">
                         <h4>Model Architecture</h4>
-                        <p>Fine-tuned BERT-base-uncased with a linear classification head for three-class prediction: "Yes", "To some extent", and "No".</p>
+                        <p>Fine-tuned <span class="citation">bert-base-uncased</span> transformer with a linear classification head for three-class prediction: "Yes", "To some extent", and "No" categories for pedagogical assessment.</p>
                     </div>
                     <div class="method-item">
                         <h4>Input Processing</h4>
-                        <p>Concatenated dialogue history with tutor response, tokenized with 512-token limit and truncation from the beginning.</p>
+                        <p>Concatenated dialogue history with current tutor response, tokenized with 512-token limit and truncation applied from the beginning to preserve recent context.</p>
                     </div>
                     <div class="method-item">
-                        <h4>Training Setup</h4>
-                        <p>AdamW optimizer, 1e-5 learning rate, batch size 16, 4 epochs with 0.01 weight decay on single NVIDIA T4 GPU.</p>
+                        <h4>Training Configuration</h4>
+                        <p>AdamW optimizer with learning rate <span class="math">1×10⁻⁵</span>, batch size 16, trained for 4 epochs with 0.01 weight decay on single NVIDIA T4 GPU.</p>
                     </div>
                     <div class="method-item">
-                        <h4>Dataset</h4>
-                        <p>2,476 AI tutor responses from MathDial and Bridge datasets with 80/20 stratified train/validation split.</p>
+                        <h4>Dataset Composition</h4>
+                        <p>2,476 AI tutor responses from MathDial and Bridge datasets with stratified 80/20 train/validation split for robust evaluation.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Key Findings -->
             <section class="section">
-                <h2 class="section-title">Key Findings</h2>
+                <h2 class="section-title">Key Findings & Analysis</h2>
                 <div class="findings-list">
                     <div class="finding-item">
-                        <h4>Strong Baseline Performance</h4>
-                        <p>Despite minimal engineering, achieved competitive results with substantial gap between strict (0.6361) and lenient (0.8493) F1 scores.</p>
+                        <h4>Competitive Baseline Performance</h4>
+                        <p>Despite minimal feature engineering, our BERT-based approach achieved competitive results with a substantial performance gap between strict (0.6361) and lenient (0.8493) F1 scores, indicating challenges in precise boundary classification.</p>
                     </div>
                     <div class="finding-item">
-                        <h4>Borderline Case Challenges</h4>
-                        <p>Most errors occurred between "Yes" and "To some extent" categories, indicating difficulty with nuanced pedagogical judgment.</p>
+                        <h4>Borderline Classification Challenges</h4>
+                        <p>Most classification errors occurred between "Yes" and "To some extent" categories, highlighting the inherent difficulty in making nuanced pedagogical judgments and the subjective nature of educational feedback assessment.</p>
                     </div>
                     <div class="finding-item">
                         <h4>Error Pattern Analysis</h4>
-                        <p>Three main failure modes: tone bias leading to "Yes" overprediction, confusion with implicit guidance, and underprediction of "No" labels.</p>
+                        <p>Three primary failure modes identified: (1) tone bias leading to "Yes" overprediction, (2) confusion with implicit pedagogical guidance, and (3) systematic underprediction of "No" labels in clear negative cases.</p>
+                    </div>
+                    <div class="finding-item">
+                        <h4>Model Generalization</h4>
+                        <p>Strong correlation between development and test set performance suggests good generalization capabilities, with consistent performance patterns across both evaluation metrics and datasets.</p>
                     </div>
                 </div>
             </section>
@@ -446,10 +902,44 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 ALA Team - BEA 2025 Shared Task Submission</p>
-                <p>Analyzing Pedagogical Feedback with BERT-Based Classification</p>
+                <p>© 2025 ALA Team - BEA 2025 Shared Task Submission</p>
+                <p><em>Analyzing Pedagogical Feedback with BERT-Based Classification</em></p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">
+                    Gaming Research Integration for Learning Laboratory (GRILL) • Wright Scholars Program
+                </p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Add smooth scroll behavior for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
