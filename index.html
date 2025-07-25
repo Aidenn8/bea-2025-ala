@@ -1,122 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALA at BEA 2025 Shared Task</title>
-  <link rel="icon" href="https://sigbea.org/assets/images/favicon.png">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0b0b0b;
-      color: #f4f4f4;
-    }
-    header {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
-    }
-    h1 {
-      font-size: 2.75rem;
-      margin-bottom: 0.5rem;
-    }
-    .authors {
-      font-size: 1rem;
-      color: #ccc;
-    }
-    .authors a {
-      color: #5bc0de;
-      text-decoration: none;
-    }
-    .affiliations {
-      font-size: 0.9rem;
-      color: #999;
-      margin-bottom: 1rem;
-    }
-    .buttons {
-      margin-top: 1.5rem;
-    }
-    .buttons a {
-      display: inline-block;
-      background: #1c1c1c;
-      color: #eee;
-      padding: 0.6rem 1.2rem;
-      margin: 0.3rem;
-      border-radius: 2rem;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    .buttons a:hover {
-      background: #333;
-    }
-    main {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
-    }
-    h2 {
-      color: #5bc0de;
-      margin-bottom: 1rem;
-    }
-    .abstract {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #ccc;
-      text-align: center;
-    }
-    ul li {
-      margin: 0.5rem 0;
-    }
-    a {
-      color: #5bc0de;
-    }
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: #777;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALA at BEA 2025 Shared Task</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #4A9EFF;
+            margin-bottom: 20px;
+        }
+
+        .authors {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        .author-highlight {
+            color: #4A9EFF;
+        }
+
+        .affiliations {
+            font-size: 0.95rem;
+            color: #999999;
+            margin-bottom: 40px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: #4A9EFF;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #333333;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.3);
+        }
+
+        .presented-at {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .presented-label {
+            color: #999999;
+            margin-bottom: 10px;
+        }
+
+        .conference-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .conference-tag {
+            background-color: #333333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #4A9EFF;
+            text-align: center;
+        }
+
+        .abstract-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .result-card {
+            background-color: #111111;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            border-color: #4A9EFF;
+        }
+
+        .result-card h3 {
+            color: #4A9EFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-name {
+            color: #cccccc;
+        }
+
+        .metric-value {
+            color: #4A9EFF;
+            font-weight: 600;
+        }
+
+        /* Leaderboard */
+        .leaderboard {
+            background-color: #111111;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 600px;
+            border: 1px solid #333;
+        }
+
+        .leaderboard-title {
+            text-align: center;
+            color: #4A9EFF;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .ranking {
+            text-align: center;
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .ranking-text {
+            text-align: center;
+            color: #cccccc;
+            font-size: 1.1rem;
+        }
+
+        /* Method Overview */
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .method-item {
+            background-color: #111111;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #4A9EFF;
+        }
+
+        .method-item h4 {
+            color: #4A9EFF;
+            margin-bottom: 15px;
+        }
+
+        .method-item p {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Key Findings */
+        .findings-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .finding-item {
+            background-color: #111111;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4A9EFF;
+        }
+
+        .finding-item h4 {
+            color: #4A9EFF;
+            margin-bottom: 10px;
+        }
+
+        .finding-item p {
+            color: #e0e0e0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111111;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            color: #999999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>ALA at BEA 2025 Shared Task</h1>
-    <div class="authors">
-      <a href="#">Aiden Huang</a><sup>1</sup>, <a href="#">Elaine Wijaya</a><sup>2</sup>
-    </div>
-    <div class="affiliations">
-      <sup>1</sup>Acton-Boxborough Regional High School, <sup>2</sup>School TBD
-    </div>
-    <div class="buttons">
-      <a href="#">📄 Paper</a>
-      <a href="#">💻 Code</a>
-      <a href="#">📊 Leaderboard</a>
-    </div>
-    <div class="buttons">
-      <a href="https://sigbea.org/" target="_blank">Presented at BEA 2025</a>
-    </div>
-  </header>
+    <header>
+        <div class="container">
+            <h1 class="title">ALA at BEA 2025 Shared Task: Analyzing Pedagogical Feedback with a BERT-Based Classifier</h1>
+            
+            <div class="authors">
+                <span class="author-highlight">Aiden Huang</span><sup>1</sup>, 
+                <span class="author-highlight">Elaine Wynette Wijaya</span><sup>2</sup>
+            </div>
+            
+            <div class="affiliations">
+                <sup>1</sup>Acton-Boxborough Regional High School, Acton, MA, USA<br>
+                <sup>2</sup>SMPK 8 Penabur Tanjung Duren, Jakarta Barat, DKI Jakarta, Indonesia
+            </div>
+            
+            <div class="action-buttons">
+                <a href="#" class="btn btn-primary">📄 Paper</a>
+                <a href="#" class="btn btn-secondary">💻 Code</a>
+                <a href="#" class="btn btn-secondary">📊 Data</a>
+            </div>
+            
+            <div class="presented-at">
+                <div class="presented-label">Presented At:</div>
+                <div class="conference-tags">
+                    <span class="conference-tag">BEA 2025</span>
+                    <span class="conference-tag">ACL Workshop</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <main>
-    <section>
-      <h2>Abstract</h2>
-      <p class="abstract">
-        We present a system for Track 1 (Mistake Identification) of the BEA 2025 Shared Task, focused on evaluating AI tutors in mathematical dialogue settings. Our model, based on a fine-tuned BERT encoder, identifies pedagogical errors in tutor responses and achieved a macro-F1 score of <strong>0.6475</strong> on the validation set. We placed <strong>28th</strong> globally, contributing to research in AI tutor evaluation.
-      </p>
-    </section>
+    <main>
+        <div class="container">
+            <!-- Abstract Section -->
+            <section class="section">
+                <h2 class="section-title">Abstract</h2>
+                <div class="abstract-text">
+                    We present our submission to Track 1 (Mistake Identification) of the BEA 2025 Shared Task on Pedagogical Ability Assessment of AI Tutors. Our system uses a fine-tuned bert-base-uncased model to classify tutor responses into three pedagogical categories: "Yes", "To some extent", and "No". Inputs are constructed by concatenating the dialogue history with the current tutor response, allowing the model to assess whether the tutor accurately identifies student mistakes. Trained on the 2,476-response development set, our final submission achieved a strict macro-F1 score of 0.6361 and a lenient macro-F1 score of 0.8493 on the official test set.
+                </div>
+            </section>
 
-    <section>
-      <h2>Resources</h2>
-      <ul>
-        <li><a href="https://github.com/kaushal0494/UnifyingAITutorEvaluation/tree/main/BEA_Shared_Task_2025_Datasets" target="_blank">Official Dataset</a></li>
-        <li><a href="https://www.codabench.org/competitions/7195/" target="_blank">CodaBench Track 1</a></li>
-        <li><a href="https://arxiv.org/abs/2306.06941" target="_blank">BEA 2023 Reference</a></li>
-      </ul>
-    </section>
-  </main>
+            <!-- Leaderboard Position -->
+            <section class="section">
+                <div class="leaderboard">
+                    <h3 class="leaderboard-title">Official Leaderboard Position</h3>
+                    <div class="ranking">28th</div>
+                    <div class="ranking-text">out of participating teams in Track 1</div>
+                </div>
+            </section>
 
-  <footer>
-    &copy; 2025 Aiden Huang & Elaine Wijaya. All rights reserved.
-  </footer>
+            <!-- Results Section -->
+            <section class="section">
+                <h2 class="section-title">Results</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Validation Set Performance</h3>
+                        <div class="metric">
+                            <span class="metric-name">Strict Accuracy</span>
+                            <span class="metric-value">86.29%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Strict Macro-F1</span>
+                            <span class="metric-value">0.6430</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Lenient Accuracy</span>
+                            <span class="metric-value">92.74%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Lenient Macro-F1</span>
+                            <span class="metric-value">0.8407</span>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3>Test Set Performance</h3>
+                        <div class="metric">
+                            <span class="metric-name">Strict Accuracy</span>
+                            <span class="metric-value">84.23%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Strict Macro-F1</span>
+                            <span class="metric-value">0.6361</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Lenient Accuracy</span>
+                            <span class="metric-value">91.40%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Lenient Macro-F1</span>
+                            <span class="metric-value">0.8493</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Method Section -->
+            <section class="section">
+                <h2 class="section-title">Method Overview</h2>
+                <div class="method-grid">
+                    <div class="method-item">
+                        <h4>Model Architecture</h4>
+                        <p>Fine-tuned BERT-base-uncased with a linear classification head for three-class prediction: "Yes", "To some extent", and "No".</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>Input Processing</h4>
+                        <p>Concatenated dialogue history with tutor response, tokenized with 512-token limit and truncation from the beginning.</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>Training Setup</h4>
+                        <p>AdamW optimizer, 1e-5 learning rate, batch size 16, 4 epochs with 0.01 weight decay on single NVIDIA T4 GPU.</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>Dataset</h4>
+                        <p>2,476 AI tutor responses from MathDial and Bridge datasets with 80/20 stratified train/validation split.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Findings -->
+            <section class="section">
+                <h2 class="section-title">Key Findings</h2>
+                <div class="findings-list">
+                    <div class="finding-item">
+                        <h4>Strong Baseline Performance</h4>
+                        <p>Despite minimal engineering, achieved competitive results with substantial gap between strict (0.6361) and lenient (0.8493) F1 scores.</p>
+                    </div>
+                    <div class="finding-item">
+                        <h4>Borderline Case Challenges</h4>
+                        <p>Most errors occurred between "Yes" and "To some extent" categories, indicating difficulty with nuanced pedagogical judgment.</p>
+                    </div>
+                    <div class="finding-item">
+                        <h4>Error Pattern Analysis</h4>
+                        <p>Three main failure modes: tone bias leading to "Yes" overprediction, confusion with implicit guidance, and underprediction of "No" labels.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 ALA Team - BEA 2025 Shared Task Submission</p>
+                <p>Analyzing Pedagogical Feedback with BERT-Based Classification</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
